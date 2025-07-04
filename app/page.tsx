@@ -1,12 +1,14 @@
 export default function Home() {
   return (
     <section className="bg-gray-50 text-gray-800">
+      {/* Hero */}
       <div className="max-w-7xl mx-auto px-6 py-20 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Welcome to Sun State HOA
+          Helping Florida HOAs Stay Compliant
         </h1>
         <p className="text-lg md:text-xl text-gray-600 mb-8">
-          Bringing modern tools to community living.
+          Florida law now requires many HOAs to maintain a dedicated website for official records.  
+          We make that easy, secure, and affordable.
         </p>
         <div className="flex justify-center gap-4">
           <a href="#" className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
@@ -18,27 +20,16 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-8">
-        {[
-          {
-            title: "Community Portal",
-            desc: "Easily communicate and share updates with residents.",
-          },
-          {
-            title: "Finance Tools",
-            desc: "Track dues, view financial reports, and increase transparency.",
-          },
-          {
-            title: "Maintenance Requests",
-            desc: "Allow residents to submit and monitor service tickets.",
-          },
-        ].map(({ title, desc }) => (
-          <div key={title} className="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
-            <h3 className="text-xl font-semibold mb-2">{title}</h3>
-            <p className="text-gray-600">{desc}</p>
-          </div>
-        ))}
+      {/* Problem Statement */}
+      <div className="max-w-5xl mx-auto px-6 py-12 text-center">
+        <h2 className="text-2xl font-semibold mb-4">
+          New Legal Requirements for HOAs in Florida
+        </h2>
+        <p className="text-gray-600">
+          Recent Florida legislation mandates that certain homeowners associations provide access to governing documents,
+          meeting notices, budgets, and more via a community-specific website. Non-compliance could result in fines or legal challenges.
+        </p>
       </div>
-    </section>
-  );
-}
+
+      {/* Our Solution */}
+      <div className="max-

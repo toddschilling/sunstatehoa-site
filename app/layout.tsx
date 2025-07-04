@@ -30,7 +30,14 @@ function Navbar() {
   return (
     <header className="bg-white shadow sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <span className="text-xl font-bold text-blue-600">Sun State HOA</span>
+        <a href="/" className="flex items-center gap-2">
+          <img
+            src="/logo.png" // adjust path if using subfolder like /assets/logo.png
+            alt="Sun State HOA"
+            className="h-10 w-auto"
+          />
+          <span className="text-xl font-semibold text-gray-800">Sun State HOA</span>
+        </a>
         <nav className="hidden md:flex space-x-6 text-gray-600">
           <a href="#" className="hover:text-blue-600">Home</a>
           <a href="#" className="hover:text-blue-600">About</a>
@@ -40,6 +47,7 @@ function Navbar() {
     </header>
   );
 }
+
 
 function Footer() {
   return (
