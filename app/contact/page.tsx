@@ -7,12 +7,13 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    const formData = new FormData(form);
 
     const data = {
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      community: form['hoa-community-name'].value,
+      name: formData.get('name')?.toString() || '',
+      email: formData.get('email')?.toString() || '',
+      phone: formData.get('phone')?.toString() || '',
+      community: formData.get('hoa-community-name')?.toString() || '',
     };
 
     const res = await fetch('/api/contact', {
@@ -28,6 +29,7 @@ export default function Contact() {
     }
   };
 
+
   if (submitted) {
     return (
       <div className="max-w-xl mx-auto px-6 py-20 text-center">
@@ -41,7 +43,7 @@ export default function Contact() {
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto px-6 py-16 space-y-6">
       <h1 className="text-3xl font-bold">Request a Free Consultation</h1>
 
-      {['Name', 'Email', 'Phone', 'HOA Community Name'].map((label) => (
+      {['name', 'email', 'phone', 'hoa-community-name'].map((label) => (
         <div key={label}>
           <label className="block text-gray-700 mb-1">{label}</label>
           <input
