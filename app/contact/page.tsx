@@ -4,19 +4,35 @@ import React, { useState } from 'react';
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    // TODO: hook in real API / email service
+    const form = e.currentTarget;
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      community: form['hoa-community-name'].value,
+    };
+
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      alert("There was a problem sending your message.");
+    }
   };
 
   if (submitted) {
     return (
       <div className="max-w-xl mx-auto px-6 py-20 text-center">
         <h1 className="text-3xl font-bold mb-4">Thank You!</h1>
-        <p className="text-gray-700">
-          We’ve received your request and will be in touch shortly.
-        </p>
+        <p className="text-gray-700">We’ve received your request and will be in touch shortly.</p>
       </div>
     );
   }
@@ -24,6 +40,7 @@ export default function Contact() {
   return (
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto px-6 py-16 space-y-6">
       <h1 className="text-3xl font-bold">Request a Free Consultation</h1>
+
       {['Name', 'Email', 'Phone', 'HOA Community Name'].map((label) => (
         <div key={label}>
           <label className="block text-gray-700 mb-1">{label}</label>
@@ -34,6 +51,7 @@ export default function Contact() {
           />
         </div>
       ))}
+
       <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl shadow hover:bg-blue-700 transition">
         Submit Request
       </button>
