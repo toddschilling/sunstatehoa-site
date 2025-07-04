@@ -40,6 +40,7 @@ function Navbar() {
         </a>
         <nav className="hidden md:flex space-x-6 text-gray-600">
           <a href="/" className="hover:text-blue-600">Home</a>
+          <a href="/faq" className="hover:text-blue-600">FAQ</a>
           <a href="/learn-more" className="hover:text-blue-600">About</a>
           <a href="/contact" className="hover:text-blue-600">Contact</a>
         </nav>
