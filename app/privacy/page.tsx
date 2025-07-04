@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
       <h2 className="text-2xl font-semibold mt-8 mb-2">5. Your Choices</h2>
       <p className="text-gray-700">
         You may request to view, correct, or delete your personal information at any time by contacting us at
-        <a href="mailto:info@sunstatehoa.com" className="text-blue-600 ml-1">info@sunstatehoa.com</a>.
+        <a href="mailto:admin@sunstatehoa.com" className="text-blue-600 ml-1">admin@sunstatehoa.com</a>.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">6. Updates to This Policy</h2>
