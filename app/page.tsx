@@ -1,65 +1,67 @@
 export default function Home() {
   return (
-    <main className="bg-gray-50 min-h-screen font-sans text-gray-800">
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <img src="/logo.png" alt="Sunstate HOA Logo" className="h-20 mx-auto mb-6" />
+    <main className="bg-gray-50 min-h-screen text-gray-800 font-sans">
+      <div className="max-w-5xl mx-auto px-6 py-16 space-y-16">
 
-        <h1 className="text-3xl font-bold text-center mb-4">
-          Florida HOA Website Compliance Made Easy
-        </h1>
-        <p className="text-center mb-6">
-          SUNSTATE HOA helps Florida condominium and homeowner associations meet legal requirements with ease.
-        </p>
-        <div className="text-center mb-10">
-          <a href="#contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+        <section className="text-center space-y-4">
+          <img src="/logo.png" alt="Sunstate HOA Logo" className="h-20 mx-auto" />
+          <h1 className="text-4xl font-heading font-bold text-brand">
+            Florida HOA Website Compliance — Done For You
+          </h1>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            Secure, legal, and easy-to-use websites for Florida condominium and homeowner associations.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block mt-4 bg-brand text-white font-medium px-6 py-3 rounded-lg shadow hover:bg-brand-dark transition"
+          >
             Get Started Today
           </a>
-        </div>
+        </section>
 
-        <Section title="What Florida Law Requires">
-          <ul className="list-disc pl-5 space-y-1">
+        <section className="space-y-6">
+          <h2 className="text-2xl font-heading font-semibold text-gray-900">What Florida Law Requires</h2>
+          <p>
+            Florida law (FS 718.111) requires condo associations with 25+ units to maintain a website with secure access for residents.
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
             <li>A custom website for your HOA</li>
             <li>Password-protected document access</li>
             <li>Ongoing updates and support</li>
           </ul>
-        </Section>
+        </section>
 
-        <Section title="What We Offer">
-          <ul className="list-disc pl-5 space-y-1">
+        <section className="space-y-6">
+          <h2 className="text-2xl font-heading font-semibold text-gray-900">What We Offer</h2>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Clean, mobile-friendly HOA websites</li>
             <li>Secure owner portals for residents</li>
             <li>Easy drag-and-drop PDF uploads for board members</li>
             <li>Compliance monitoring so you stay ahead of the law</li>
           </ul>
-        </Section>
+        </section>
 
-        <Section title="Optional Add-ons">
-          <ul className="list-disc pl-5 space-y-1">
+        <section className="space-y-6">
+          <h2 className="text-2xl font-heading font-semibold text-gray-900">Optional Add-ons</h2>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Email notifications</li>
             <li>Maintenance request forms</li>
             <li>Voting tools</li>
           </ul>
-        </Section>
+        </section>
 
-        <Section title="Contact" id="contact">
-          <p>Email: <a href="mailto:info@sunstatehoa.com" className="text-blue-600 underline">info@sunstatehoa.com</a></p>
+        <section id="contact" className="space-y-4">
+          <h2 className="text-2xl font-heading font-semibold text-gray-900">Contact</h2>
+          <p>Email: <a href="mailto:info@sunstatehoa.com" className="text-brand underline">info@sunstatehoa.com</a></p>
           <p>Phone: (Your Google Voice number here)</p>
           <p>Serving all of Florida</p>
-        </Section>
+        </section>
+
       </div>
 
-      <footer className="bg-gray-100 text-center py-4 text-sm text-gray-500">
+      <footer className="bg-gray-100 text-center py-6 text-sm text-gray-500">
         © 2025 SUNSTATE HOA. DBA Registered in Florida.
       </footer>
     </main>
-  );
-}
-
-function Section({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) {
-  return (
-    <section className="bg-white shadow-md rounded-lg p-6 mb-8" id={id}>
-      <h2 className="text-2xl font-semibold mb-3">{title}</h2>
-      {children}
-    </section>
   );
 }
