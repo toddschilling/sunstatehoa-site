@@ -1,4 +1,3 @@
-// app/page.tsx
 export default function Home() {
   return (
     <main className="bg-gray-50 min-h-screen font-sans text-gray-800">
@@ -56,4 +55,11 @@ export default function Home() {
   );
 }
 
-function Section({ title, children, id }: { title: string; children: React.ReactNode; id?: strin
+function Section({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) {
+  return (
+    <section className="bg-white shadow-md rounded-lg p-6 mb-8" id={id}>
+      <h2 className="text-2xl font-semibold mb-3">{title}</h2>
+      {children}
+    </section>
+  );
+}
