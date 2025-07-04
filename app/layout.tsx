@@ -39,9 +39,9 @@ function Navbar() {
           <span className="text-xl font-semibold text-gray-800">Sun State HOA</span>
         </a>
         <nav className="hidden md:flex space-x-6 text-gray-600">
-          <a href="#" className="hover:text-blue-600">Home</a>
-          <a href="#" className="hover:text-blue-600">About</a>
-          <a href="#" className="hover:text-blue-600">Contact</a>
+          <a href="/" className="hover:text-blue-600">Home</a>
+          <a href="/learn-more" className="hover:text-blue-600">About</a>
+          <a href="/contact" className="hover:text-blue-600">Contact</a>
         </nav>
       </div>
     </header>
@@ -55,8 +55,8 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
         <p>&copy; {new Date().getFullYear()} Sun State HOA. All rights reserved.</p>
         <div className="flex space-x-4">
-          <a href="#" className="hover:text-gray-700">Privacy</a>
-          <a href="#" className="hover:text-gray-700">Terms</a>
+          <a href="/privacy" className="hover:text-gray-700">Privacy</a>
+          <a href="/terms" className="hover:text-gray-700">Terms</a>
         </div>
       </div>
     </footer>

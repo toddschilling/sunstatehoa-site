@@ -14,10 +14,10 @@ export default function Home() {
           We make that easy, secure, and affordable.
         </p>
         <div className="flex justify-center gap-4">
-          <a href="#" className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
+          <a href="/contact" className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
             Get Started
           </a>
-          <a href="#" className="px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-100 transition">
+          <a href="/learn-more" className="px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-100 transition">
             Learn More
           </a>
         </div>
