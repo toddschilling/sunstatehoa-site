@@ -1,5 +1,5 @@
 // app/tenant-site/member/page.tsx
-import { cookies, headers } from 'next/headers';
+import { headers } from 'next/headers';
 import { createClient } from '@/lib/supabase';
 import { extractTenantSlug } from '@/lib/extractTenantSlug';
 import { redirect } from 'next/navigation';
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function MemberPage() {
   /* ─── auth check ────────────────────────────── */
-  const supabase = createClient(cookies());
+  const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
