@@ -1,6 +1,6 @@
 /* app/tenant-site/page.tsx */
 import Link from 'next/link';
-import { headers, cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import { createClient } from '@/lib/supabase';
 import { extractTenantSlug } from '@/lib/extractTenantSlug';
 
@@ -16,11 +16,19 @@ export default async function TenantLandingPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  if (!slug) {
+    return (
+      <main className="p-10 text-center text-red-600">
+        Invalid subdomain
+      </main>
+    );
+  }
+
   /* ── look up tenant record ───────────────────────────────────────── */
   const { data: tenant } = await supabase
     .from('tenants')
     .select('*')
-    .eq('slug', slug)
+    .eq('slug', slug!)
     .single();
 
   if (!tenant) {
