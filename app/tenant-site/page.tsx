@@ -9,7 +9,7 @@ export default async function TenantLandingPage() {
   const host = headers().get('host') || '';
   const slug = extractTenantSlug(host);
 
-  const supabase = createClient(cookies());
+  const supabase = createClient();
 
   /* ── fetch the signed-in user (if any) ───────────────────────────── */
   const {
