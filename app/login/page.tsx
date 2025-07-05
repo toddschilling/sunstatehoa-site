@@ -1,12 +1,11 @@
 // app/login/page.tsx
-import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase';
 import LoginForm from '@/components/LoginForm';
 
 export const dynamic = 'force-dynamic'; // show fresh auth state every request
 
 export default async function LoginPage() {
-  const supabase = createClient(cookies());
+  const supabase = createClient();
 
   // already signed in?  skip the form
   const {
