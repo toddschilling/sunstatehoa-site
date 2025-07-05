@@ -21,10 +21,18 @@ export default async function MemberPage() {
   const host = headers().get('host') || '';
   const slug = extractTenantSlug(host);
 
+  if (!slug) {
+    return (
+      <main className="p-10 text-center text-red-600">
+        Invalid subdomain
+      </main>
+    );
+  }
+
   const { data: tenant } = await supabase
     .from('tenants')
     .select('*')
-    .eq('slug', slug)
+    .eq('slug', slug!)
     .single();
 
   /* ─── render ────────────────────────────────── */
