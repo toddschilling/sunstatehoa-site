@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
 
   if (!isRootDomain) {
     // Rewrite subdomain requests to the _tenant route
-    return NextResponse.rewrite(new URL("/_tenant", request.url));
+    return NextResponse.rewrite(new URL("/tenant-site", request.url));
   }
 
   return NextResponse.next();
