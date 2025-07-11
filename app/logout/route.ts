@@ -3,22 +3,17 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const supabase = createClient();
-  const { error } = await supabase.auth.signOut();
+  await supabase.auth.signOut();
 
-  // Dynamically determine origin
-  const origin = new URL(request.url).origin;
-  const response = NextResponse.redirect(`${origin}/start`, { status: 302 });
+  // Build an absolute URL back to /start
+  const redirectUrl = new URL("/", request.url);
 
-  // These are Supabase's cookie names by default
-  response.cookies.set("sb-access-token", "", {
-    maxAge: 0,
-    path: "/",
-  });
+  // Create the redirect response
+  const res = NextResponse.redirect(redirectUrl, { status: 302 });
 
-  response.cookies.set("sb-refresh-token", "", {
-    maxAge: 0,
-    path: "/",
-  });
+  // Explicitly clear auth cookies
+  res.cookies.delete("sb-access-token");
+  res.cookies.delete("sb-refresh-token");
 
-  return response;
+  return res;
 }

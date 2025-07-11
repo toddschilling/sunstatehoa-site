@@ -1,50 +1,53 @@
-'use client';
+"use client";
 
-export const dynamic = 'force-dynamic';
-
-import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { createClient } from '@/lib/supabase-browser';
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createClient } from "@/lib/supabase-browser";
 
 export default function StartPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [checkingSession, setCheckingSession] = useState(true);
+  const [loading, setLoading] = useState(false);
 
+  /* ---------- session guard ---------- */
   useEffect(() => {
-    const checkAuthAndRedirect = async () => {
-      const code = searchParams.get('code');
+    const check = async () => {
+      await new Promise((r) => setTimeout(r, 100));
 
-      if (code) {
-        const { error } = await supabase.auth.exchangeCodeForSession(code);
-        if (error) {
-          setError('Verification failed. Please try logging in manually.');
-          setCheckingSession(false);
-          return;
-        }
-      }
+      // handle magic-link ?code
+      const code = searchParams.get("code");
+      if (code)
+        await supabase.auth.exchangeCodeForSession(code).catch(() => {});
 
+      // verified user fetch (cookie-aware)
       const { data: userData } = await supabase.auth.getUser();
 
-      if (userData?.user) {
-        router.push('/onboarding');
+      if (userData.user) {
+        router.push("/onboarding");
       } else {
         setCheckingSession(false);
       }
     };
 
-    checkAuthAndRedirect();
+    check();
+
+    const { data: sub } = supabase.auth.onAuthStateChange((evt, session) => {
+      if (evt === "SIGNED_IN" && session?.user) router.push("/onboarding");
+    });
+    return () => sub.subscription.unsubscribe();
   }, [router, supabase, searchParams]);
 
-
+  /* ---------- login submit ---------- */
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    setLoading(true);
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -53,25 +56,16 @@ export default function StartPage() {
 
     if (error) {
       setError(error.message);
-    } else {
-      const { data } = await supabase.auth.getUser();
-      if (data?.user) {
-        router.push('/onboarding');
-      } else {
-        // fallback (should rarely happen)
-        router.refresh();
-      }
+      setLoading(false);
     }
+    // on success, onAuthStateChange will redirect
   }
 
-  
+  /* ---------- ui ---------- */
   if (checkingSession) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold mb-4">Just a moment…</h1>
-          <p className="text-gray-600">We're checking your account and getting things ready.</p>
-        </div>
+        <p className="text-gray-600">Checking session…</p>
       </div>
     );
   }
@@ -79,45 +73,47 @@ export default function StartPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md space-y-6">
-        <h1 className="text-2xl font-bold text-center">Sign In to Get Started</h1>
+        <h1 className="text-2xl font-bold text-center">
+          Sign In to Get Started
+        </h1>
         <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium">Email</label>
+          <label className="block">
+            <span className="text-sm">Email</span>
             <input
-              id="email"
+              className="mt-1 block w-full border rounded px-3 py-2"
               type="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full border rounded px-3 py-2"
             />
-          </div>
+          </label>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium">Password</label>
+          <label className="block">
+            <span className="text-sm">Password</span>
             <input
-              id="password"
+              className="mt-1 block w-full border rounded px-3 py-2"
               type="password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-1 block w-full border rounded px-3 py-2"
             />
-          </div>
+          </label>
 
           {error && <p className="text-red-600 text-sm">{error}</p>}
 
           <button
-            type="submit"
-            className="w-full bg-sky-600 text-white py-2 px-4 rounded hover:bg-sky-700"
+            disabled={loading}
+            className="w-full bg-sky-600 text-white py-2 rounded disabled:opacity-50"
           >
-            Sign In
+            {loading ? "Signing in…" : "Sign In"}
           </button>
         </form>
 
         <p className="text-sm text-center text-gray-600">
-          Don’t have an account?{' '}
-          <a href="/signup" className="text-sky-600 hover:underline">Sign up</a>
+          Don’t have an account?{" "}
+          <a href="/signup" className="text-sky-600">
+            Sign up
+          </a>
         </p>
       </div>
     </div>

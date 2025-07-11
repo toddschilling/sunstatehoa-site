@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -9,8 +9,8 @@ export default function HomePage() {
           Create a&nbsp;Website&nbsp;for&nbsp;your&nbsp;HOA&nbsp;in&nbsp;Minutes
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-          Spin up your own sub‑domain, invite residents, and keep full control of your records—
-          no developer required.
+          Spin up your own sub‑domain, invite residents, and keep full control
+          of your records— no developer required.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -20,12 +20,14 @@ export default function HomePage() {
           >
             Get&nbsp;Started
           </Link>
-          <Link
-            href="/demo"
-            className="rounded-xl border border-sky-600 px-8 py-4 text-sky-600 font-semibold hover:bg-sky-50 transition"
+          <button
+            type="button"
+            disabled
+            className="inline-block bg-gray-200 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed shadow-sm"
+            title="Coming soon"
           >
-            Watch&nbsp;2‑min&nbsp;Demo
-          </Link>
+            Watch 2‑min Demo
+          </button>
         </div>
       </section>
 
@@ -40,21 +42,24 @@ export default function HomePage() {
             <span className="text-5xl font-extrabold text-sky-600">1</span>
             <h3 className="mt-4 text-xl font-semibold">Create your site</h3>
             <p className="mt-2 text-gray-600">
-              Choose your HOA name—your site (e.g. <em>oakgrove.sunstatehoa.com</em>) is live instantly.
+              Choose your HOA name—your site (e.g.{" "}
+              <em>oakgrove.sunstatehoa.com</em>) is live instantly.
             </p>
           </li>
           <li className="flex flex-col items-center text-center">
             <span className="text-5xl font-extrabold text-sky-600">2</span>
             <h3 className="mt-4 text-xl font-semibold">Upload documents</h3>
             <p className="mt-2 text-gray-600">
-              Drag‑and‑drop governing docs, budgets, minutes, and notices—all stored in your private bucket.
+              Drag‑and‑drop governing docs, budgets, minutes, and notices—all
+              stored in your private bucket.
             </p>
           </li>
           <li className="flex flex-col items-center text-center">
             <span className="text-5xl font-extrabold text-sky-600">3</span>
             <h3 className="mt-4 text-xl font-semibold">Invite members</h3>
             <p className="mt-2 text-gray-600">
-              Email or magic‑link invites add board & residents with role‑based access in seconds.
+              Email or magic‑link invites add board & residents with role‑based
+              access in seconds.
             </p>
           </li>
         </ol>
@@ -69,31 +74,34 @@ export default function HomePage() {
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {[
             {
-              title: 'Chapter 720 Ready',
-              desc: 'All required public disclosures and login‑protected member areas baked‑in.',
+              title: "Chapter 720 Ready",
+              desc: "All required public disclosures and login‑protected member areas baked‑in.",
             },
             {
-              title: 'Self‑Service, Not “Agency”',
-              desc: 'You own your domain, content and data. We just provide the rails.',
+              title: "Self‑Service, Not “Agency”",
+              desc: "You own your domain, content and data. We just provide the rails.",
             },
             {
-              title: 'Secure by Default',
-              desc: 'Role‑based auth, private Supabase buckets per HOA, and daily backups.',
+              title: "Secure by Default",
+              desc: "Role‑based auth, private Supabase buckets per HOA, and daily backups.",
             },
             {
-              title: 'Affordable Flat Pricing',
-              desc: 'Simple per‑unit plans with no setup fees or surprise add‑ons.',
+              title: "Affordable Flat Pricing",
+              desc: "Simple per‑unit plans with no setup fees or surprise add‑ons.",
             },
             {
-              title: 'No Tech Skills Needed',
-              desc: 'If you can attach a file to email, you can run your Sun State site.',
+              title: "No Tech Skills Needed",
+              desc: "If you can attach a file to email, you can run your Sun State site.",
             },
             {
-              title: 'Live Support When Needed',
-              desc: 'Chat and email support from real humans who know Florida HOA law.',
+              title: "Live Support When Needed",
+              desc: "Chat and email support from real humans who know Florida HOA law.",
             },
           ].map((item) => (
-            <div key={item.title} className="bg-white p-6 rounded-2xl shadow-sm">
+            <div
+              key={item.title}
+              className="bg-white p-6 rounded-2xl shadow-sm"
+            >
               <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="mt-2 text-gray-600">{item.desc}</p>
             </div>

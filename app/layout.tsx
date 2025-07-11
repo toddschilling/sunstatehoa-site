@@ -1,15 +1,16 @@
-import './globals.css';
-import { Metadata } from 'next';
-import Link from 'next/link';
+import "./globals.css";
+import { Metadata } from "next";
+import Link from "next/link";
+import LogoutButton from "@/components/LogoutButton";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: 'Sun State HOA – Self‑Service Compliance Sites',
+  title: "Sun State HOA – Self‑Service Compliance Sites",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
   description:
-    'Launch a Chapter 720‑compliant HOA website in minutes. Generate a sub‑domain, invite members, and control your documents—no developers needed.',
+    "Launch a Chapter 720‑compliant HOA website in minutes. Generate a sub‑domain, invite members, and control your documents—no developers needed.",
 };
 
 export default function RootLayout({
@@ -63,23 +64,26 @@ function Footer() {
     <footer className="border-t bg-gray-50">
       <div className="mx-auto max-w-7xl px-6 py-8 text-center text-sm text-gray-500 space-y-2">
         <p>
-          &copy; {new Date().getFullYear()} Sun&nbsp;State&nbsp;HOA. All rights reserved.
+          &copy; {new Date().getFullYear()} Sun&nbsp;State&nbsp;HOA. All rights
+          reserved.
           <span className="mx-2">|</span>
-          <a href="mailto:admin@sunstatehoa.com" className="hover:text-gray-700">
+          <a
+            href="mailto:admin@sunstatehoa.com"
+            className="hover:text-gray-700"
+          >
             admin@sunstatehoa.com
           </a>
         </p>
         <div className="text-sm text-center text-gray-600">
-          Navigate: <Link href="/features" className="hover:text-gray-700">Features</Link> &middot;{' '}
-          <Link href="/pricing" className="hover:text-gray-700">Pricing</Link> &middot;{' '}
-          <form action="/logout" method="post" className="inline">
-            <button
-              type="submit"
-              className="text-sm text-sky-600 hover:underline inline"
-            >
-              Sign Out
-            </button>
-          </form>  
+          Navigate:{" "}
+          <Link href="/features" className="hover:text-gray-700">
+            Features
+          </Link>{" "}
+          &middot;{" "}
+          <Link href="/pricing" className="hover:text-gray-700">
+            Pricing
+          </Link>{" "}
+          &middot; <LogoutButton />
         </div>
       </div>
     </footer>
